@@ -27,3 +27,9 @@ body {
 #temp-desc {
 	font-size: 1.5em;
 }
+
+#celsius, #fahrenheit {
+	font-size: 3em;
+	margin: 0 10px;
+	cursor: pointer;
+}
