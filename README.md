@@ -3,7 +3,7 @@
 * Users are able to see the current local weather and change from Celsius to Fahrenheit.
 
 # How To Run
-* Click [here](https://ncaron.github.io/local-weather/) to open the page.
+* Click [here](http://ncaron.github.io/local-weather/) to open the page.
 
 # License
 This repository is covered under the [MIT License](LICENSE)
