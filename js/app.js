@@ -1,37 +1,50 @@
 $('document').ready(function() {
 	var temperature;
 
-	// Checks if geolocation is available and gets user's location
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var appid = '38edae5f250c030f006e2fb6f54103dc';
-			var latitude = position.coords.latitude;
-			var longitude = position.coords.longitude;
+	// URL to gather location via IP
+	var locationUrl = 'http://ip-api.com/json';
+	var latitude;
+	var longitude;
+	var city;
+	var region;
+	var country;
 
-			var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&APPID=' + appid;
+	// Use the URL to gather information on the user's location
+	$.getJSON(locationUrl, function(response) {
+		latitude = response.lat;
+		longitude = response.lon;
+		city = response.city;
+		region = response.region;
+		country = response.country;
 
-			// Gets weather information from Open Weather API
-			$.getJSON(url, function(response) {
-				var location = response.name + ', ' + response.sys.country;
-				temperature = response.main.temp;
-				var tempDesc = response.weather[0].main;
-				var icon = getIcon(response.weather[0].icon);
+		getWeatherData(latitude, longitude, city, region, country);
+	});
+});
 
-				$('#location').html(location);
-				$('#temp-desc').html(tempDesc);
-				$('#icon').addClass(icon);
-				convertToCelsius(temperature);
-			});
-		});
-	}
+// Gets weather data based on user's location
+var getWeatherData = function(latitude, longitude, city, region, country) {
+	var appid = '38edae5f250c030f006e2fb6f54103dc';
+	var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&APPID=' + appid;
 
-	$('#fahrenheit').on('click', function() {
-		convertToFahrenheit(temperature);
-	})
+	$.getJSON(url, function(response) {
+		var location = city + ', ' + region + ' - ' + country;
+		temperature = response.main.temp;
+		var tempDesc = response.weather[0].main;
+		var icon = getIcon(response.weather[0].icon);
 
-	$('#celsius').on('click', function() {
+		$('#location').html(location);
+		$('#temp-desc').html(tempDesc);
+		$('#icon').addClass(icon);
 		convertToCelsius(temperature);
-	})
+	});
+};
+
+$('#fahrenheit').on('click', function() {
+	convertToFahrenheit(temperature);
+});
+
+$('#celsius').on('click', function() {
+	convertToCelsius(temperature);
 });
 
 var convertToCelsius = function(temperature) {
