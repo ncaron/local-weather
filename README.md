@@ -1,6 +1,7 @@
 # Description
-* A simplistic weather app that display local weather information built as part of freeCodeCamp's program.
+* A simple weather app that displays local weather information built as part of freeCodeCamp's program.
 * Users are able to see the current local weather and change from Celsius to Fahrenheit.
+* This was previously built with jQuery but changed to React for practice.
 
 # How To Run
 * Click [here](http://ncaron.github.io/local-weather/) to open the page.
