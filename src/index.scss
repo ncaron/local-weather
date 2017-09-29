@@ -1,0 +1,49 @@
+body {
+  background: #555;
+  color: white;
+  font: normal 16px Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.loading,
+.location {
+  font-size: 2.5em;
+  margin-top: 50px;
+}
+
+.temp {
+  margin: 50px 0;
+
+  .units, p {
+    display: inline-block;
+  }
+
+  p {
+    font-size: 5em;
+    margin-right: 15px;
+  }
+
+  .units span {
+    display: block;
+    font-size: 1.75em;
+    cursor: pointer;
+
+    &.active {
+      color: yellow;
+    }
+  }
+}
+
+.icon { height: 100px; }
+
+.description {
+  font-size: 1.3em;
+  text-transform: capitalize;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: .9em;
+
+  a { color: inherit; }
+}

@@ -11,8 +11,12 @@ import './index.scss';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
+function hasLoaded(obj) {
+  return Object.keys(obj).length > 0;
+}
+
 ReactDOM.render(
   <Provider store={ createStoreWithMiddleware(reducers) }>
-    <App />
+    <App hasLoaded={ hasLoaded } />
   </Provider>,
   document.getElementById('root'));
